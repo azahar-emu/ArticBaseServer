@@ -8,7 +8,7 @@
 Artic Base is a tool for broadcasting games from your 3DS to a compatible emulator. This allows playing your physical or digital games on an emulator without having to dump them. You can find a demo [here](https://www.youtube.com/watch?v=noDz-FnOd2M).
 
 ## Description
-Artic Base Server is a Luma3DS 3GX plugin that allows using the Artic Base protocol to broadcast your games to a compaible emulator (for example: [PabloMK7/citra](https://github.com/PabloMK7/citra)). This works by forwarding the filesystem requests from the emulator to the console.
+Artic Base Server is a Luma3DS 3GX plugin that allows using the Artic Base protocol to broadcast your games to a compatible emulator (for example: [Azahar](https://github.com/azahar-emu/azahar)). This works by forwarding the filesystem requests from the emulator to the console.
 
 ### Features
 - Play games from your console without having to dump them, with purchased updates and DLC.
@@ -34,7 +34,7 @@ Artic Base Server is a Luma3DS 3GX plugin that allows using the Artic Base proto
 3) Select the application you want to broadcast from the Home Menu.
 4) On a compatible emulator, select the Artic Base option and enter the IP address displayed on your console.
 
-NOTE: A recent version of Luma3DS (v13.1.1 or newer) is requires to use Artic Base Server. You can get it [here](https://github.com/LumaTeam/Luma3DS/releases/latest).
+NOTE: A recent version of Luma3DS (v13.1.1 or newer) is required to use Artic Base Server. You can get it [here](https://github.com/LumaTeam/Luma3DS/releases/latest).
 
 ## Future Plans
 This section lists features that Artic Base Server cannot currently provide. Some of these features may be added in the future.
