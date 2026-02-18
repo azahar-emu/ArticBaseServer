@@ -17,6 +17,9 @@ public:
     void Warning(const char* fmt, ...);
     void Error(const char* fmt, ...);
     void Traffic(const char* fmt, ...);
+    void BrokenScreen(); // Usually some 3DSes have a broken top screen, important information
+                        // should be displayed on the bottom screen instead.
+    bool GetOverrideState() { return overrideTop; }
 
     void Wait();
 
@@ -39,6 +42,7 @@ private:
     void Handler();
     Thread thread;
     LightEvent event;
+    bool overrideTop = false;
     
     std::queue<PendingLog> pendingLogs;
     CTRPluginFramework::Mutex pendingLogsMutex;

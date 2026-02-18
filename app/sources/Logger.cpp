@@ -51,7 +51,7 @@ void Logger::Info(const char* fmt, ...) {
     if (ret >= 0) buffer[ret] = '\0';
     {
         CTRPluginFramework::Lock l(pendingLogsMutex);
-        pendingLogs.push(PendingLog{.type = PendingLog::Type::INFO, .isTopScr = true, .string{buffer}});
+        pendingLogs.push(PendingLog{.type = PendingLog::Type::INFO, .isTopScr = (overrideTop ? false : true), .string{buffer}});
     }
     LightEvent_Signal(&event);
 }
@@ -66,7 +66,7 @@ void Logger::Debug(const char* fmt, ...) {
     if (ret >= 0) buffer[ret] = '\0';
     {
         CTRPluginFramework::Lock l(pendingLogsMutex);
-        pendingLogs.push(PendingLog{.type = PendingLog::Type::DEBUG, .isTopScr = true, .string{buffer}});
+        pendingLogs.push(PendingLog{.type = PendingLog::Type::DEBUG, .isTopScr = (overrideTop ? false : true), .string{buffer}});
     }
     LightEvent_Signal(&event);
 }
@@ -80,7 +80,7 @@ void Logger::Warning(const char* fmt, ...) {
     if (ret >= 0) buffer[ret] = '\0';
     {
         CTRPluginFramework::Lock l(pendingLogsMutex);
-        pendingLogs.push(PendingLog{.type = PendingLog::Type::WARNING, .isTopScr = true, .string{buffer}});
+        pendingLogs.push(PendingLog{.type = PendingLog::Type::WARNING, .isTopScr = (overrideTop ? false : true), .string{buffer}});
     }
     LightEvent_Signal(&event);
 }
@@ -94,7 +94,7 @@ void Logger::Error(const char* fmt, ...) {
     if (ret >= 0) buffer[ret] = '\0';
     {
         CTRPluginFramework::Lock l(pendingLogsMutex);
-        pendingLogs.push(PendingLog{.type = PendingLog::Type::ERROR, .isTopScr = true, .string{buffer}});
+        pendingLogs.push(PendingLog{.type = PendingLog::Type::ERROR, .isTopScr = (overrideTop ? false : true), .string{buffer}});
     }
     LightEvent_Signal(&event);
 }
@@ -111,6 +111,10 @@ void Logger::Traffic(const char* fmt, ...) {
         pendingLogs.push(PendingLog{.type = PendingLog::Type::TRAFFIC, .isTopScr = false, .string{buffer}});
     }
     LightEvent_Signal(&event);
+}
+
+void Logger::BrokenScreen() {
+    overrideTop = !overrideTop;
 }
 
 void Logger::Handler() {

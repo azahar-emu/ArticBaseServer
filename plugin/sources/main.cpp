@@ -177,6 +177,7 @@ PrintConsole topScreenConsole, bottomScreenConsole;
 void Main() {
     logger.Start();
 
+
     plgLdrInit();
     bool prevPluginState = ((PluginHeader*)0x07000000)->config[0] != 0;
     PLGLDR__SetPluginLoaderState(prevPluginState);
@@ -234,7 +235,15 @@ void Main() {
             
         }
     };
-    
+
+	hidScanInput();
+    u32 kH = hidKeysHeld();
+    if (kH & KEY_L) {
+        logger.BrokenScreen();
+        logger.Info("\n\n\n\n\n\n\n\n   Bottom screen mode.");
+    }
+
+
     print_bottom_info(false);
     logger.Raw(true, "");
 

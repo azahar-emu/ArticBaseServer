@@ -158,6 +158,7 @@ void Main() {
     }
     logger.Raw(false, "\n             ArticBase v%d.%d.%d\n", VERSION_MAJOR, VERSION_MINOR, VERSION_REVISION);
     logger.Raw(false, "    Press A to launch Artic Base.");
+    logger.Raw(false, "    Press L to enable logs at the bottom\n    (useful for broken top screens).");
     logger.Raw(false, "    Press B or START to exit.");
     logger.Raw(true, "");
     logger.Info("Welcome to Artic Base!\n    Check bottom screen for controls.");
@@ -174,12 +175,18 @@ void Main() {
             break;
         }
 
+        if (kDown & (KEY_L)) {
+        logger.BrokenScreen();
+	    logger.Info("Logs will be written here.");
+        }
+
         if (kDown & KEY_A) {
             logger.Info("Launching Artic Base");
             bool done = extractPlugin() && launchPlugin();
             if (done) {
                 logger.Raw(true, "");
                 logger.Info("Done, select a game from the home menu");
+                if (logger.GetOverrideState()) logger.Warning("Hold [L] to enable logs on the\n bottom screen !");
                 svcSleepThread(3000000000);
                 break;
             } else {
